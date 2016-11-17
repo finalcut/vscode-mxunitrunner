@@ -2,10 +2,14 @@
     "name": "mxunitrunner",
     "displayName": "MxUnitRunner",
     "description": "Lets you run mxunit tests in your default browser quickly from within Code",
-    "version": "0.0.1",
-    "publisher": "sbcs",
+    "version": "0.0.2",
+    "publisher": "billrawlinson",
     "engines": {
         "vscode": "^1.5.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/finalcut/vscode-mxunitrunner"
     },
     "categories": [
         "Other"
@@ -15,16 +19,18 @@
     ],
     "main": "./extension",
     "contributes": {
-        "commands": [{
-            "command": "extension.mxunit",
-            "title": "Run MxUnit Test(s)"
-        }],
+        "commands": [
+            {
+                "command": "extension.mxunit",
+                "title": "Run MxUnit Test(s)"
+            }
+        ],
         "keybindings": [
-        {
-            "command": "extension.mxunit",
-            "key": "ctrl+shift+x",
-            "mac": "cmd+shift+x"
-        }
+            {
+                "command": "extension.mxunit",
+                "key": "ctrl+shift+x",
+                "mac": "cmd+shift+x"
+            }
         ]
     },
     "scripts": {
