@@ -37,11 +37,11 @@ function activate(context) {
 
 
                 try {
-                open(decodeURIComponent(fullURL));
+                    open(decodeURIComponent(fullURL));
                 }
                 catch (error) {
-                vscode.window.showInformationMessage('Couldn\'t open file.');
-                console.error(error.stack);
+                    vscode.window.showInformationMessage('Couldn\'t open test.');
+                    console.error(error.stack);
                 }
 
 
