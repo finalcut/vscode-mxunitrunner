@@ -18,7 +18,14 @@
         "commands": [{
             "command": "extension.mxunit",
             "title": "Run MxUnit Test(s)"
-        }]
+        }],
+        "keybindings": [
+        {
+            "command": "extension.mxunit",
+            "key": "ctrl+shift+x",
+            "mac": "cmd+shift+x"
+        }
+        ]
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install"
@@ -30,5 +37,8 @@
         "eslint": "^3.6.0",
         "@types/node": "^6.0.40",
         "@types/mocha": "^2.2.32"
+    },
+    "dependencies": {
+        "open": "0.0.5"
     }
 }

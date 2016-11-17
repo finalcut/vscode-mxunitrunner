@@ -2,41 +2,54 @@
 // Import the module and reference it with the alias vscode in your code below
 let vscode = require('vscode');
 let path = require('path');
+let open = require('open');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 function activate(context) {
     let disposable = vscode.commands.registerCommand('extension.mxunit', function() {
         let editor = vscode.window.activeTextEditor;
-        if(!editor){
-            vscode.window.showWarningMessage('No Active MxUnit Test File!');
-        }
-        const ext = path.extname(editor.document.fileName);
-        const fullPath = editor.document.uri.fsPath;
+        let config =  vscode.workspace.getConfiguration('mxunit');
 
-        
+        if(config){
 
-        if (/^\.(cfc)$/.test(ext)) {
-            let baseUrl = 'http://warp.com/warp';
-            let projectRoot = 'c:\\dev\\websites\\wcs_ten\\site\\WARP\\';
-
-            let relPath = replaceAll(fullPath,projectRoot,'/');
-            relPath = replaceAll(relPath,'\\','/');
-
-
-            
-
-
-            
-
-
-            let testName = getSelectedText(editor);
-            if(testName.length){
-                testName = '&testMethod=' + testName
+            if(!editor){
+                vscode.window.showWarningMessage('No Active MxUnit Test File!');
             }
-            vscode.window.showInformationMessage(baseUrl + relPath  + '?method=runtestremote&output=html' + testName);
+            const ext = path.extname(editor.document.fileName);
+            const fullPath = editor.document.uri.fsPath;
+
+            
+
+            if (/^\.(cfc)$/.test(ext)) {
+                let baseUrl = config.baseUrl;
+                let projectRoot = vscode.workspace.rootPath;
+
+                let relPath = replaceAll(fullPath,projectRoot,'/');
+                relPath = replaceAll(relPath,'\\','/');
+
+                let testName = getSelectedText(editor);
+                if(testName.length){
+                    testName = '&testMethod=' + testName
+                }
+                let fullURL = baseUrl + relPath  + '?method=runtestremote&output=html' + testName;
+
+
+
+                try {
+                open(decodeURIComponent(fullURL));
+                }
+                catch (error) {
+                vscode.window.showInformationMessage('Couldn\'t open file.');
+                console.error(error.stack);
+                }
+
+
+            } else {
+                vscode.window.showInformationMessage('Suppoorts cfc files only!');
+            }
         } else {
-            vscode.window.showInformationMessage('Suppoorts cfc files only!');
+            vscode.window.showInformationMessage('Your Project needs to define mxunit settings!');
         }
 	});
 
