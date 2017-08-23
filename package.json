@@ -2,7 +2,7 @@
     "name": "mxunitrunner",
     "displayName": "MxUnitRunner",
     "description": "Lets you run mxunit tests in your default browser quickly from within Code",
-    "version": "1.0.0",
+    "version": "01.00.01",
     "publisher": "billrawlinson",
     "engines": {
         "vscode": "^1.5.0"
