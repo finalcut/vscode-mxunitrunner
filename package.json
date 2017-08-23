@@ -19,6 +19,22 @@
     ],
     "main": "./extension",
     "contributes": {
+        "configuration": {
+			"type": "object",
+			"title": "MXUnit",
+			"properties": {
+                "mxunit": {
+                    "type": "object",
+                    "properties": {
+                        "baseUrl": {
+                            "description": "the root url of the website where the mxunit test should be run.",
+                            "type": ["string", "null"],
+                            "default": null
+                        }
+                    }
+                }
+			}
+		},
         "commands": [
             {
                 "command": "extension.mxunit",
